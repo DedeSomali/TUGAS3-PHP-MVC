@@ -1,11 +1,15 @@
-  
 <?php 
-class Home {
-	public function index($nama = 'Dede' , $pekerjaan = 'mahasiswa'){
-		echo "Hallo , nama saya $nama , Saya adalah seorang $pekerjaan";
-	}
-	public function page();
-	{
-		echo 'About/page';
+
+
+class Home extends Controller {
+    
+	public function index()
+    {
+		$data['judul'] = 'Home';
+		$data['nama'] = $this->model('User_model')->getUser();
+		$this->view('templates/header', $data);
+		$this->view('home/index', $data);
+		$this->view('templates/footer');
+
 	}
 }
